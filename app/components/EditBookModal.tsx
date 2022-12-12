@@ -1,20 +1,21 @@
 import { FormEvent, useState } from 'react';
 
-import './EditBookModal.css';
-
-import Input from '../Input/Input';
-import { BookType } from '../../types';
+import Button from './Button';
+import Input from './Input';
+import Overlay from './Overlay';
+import { iBook } from '../../types';
+import styles from '../../styles/EditBookModal.module.css';
 
 type Props = {
-  id?: BookType['id'];
-  name?: BookType['name'];
-  price?: BookType['price'];
-  category?: BookType['category'];
-  description?: BookType['description'];
+  id?: iBook['id'];
+  name?: iBook['name'];
+  price?: iBook['price'];
+  category?: iBook['category'];
+  description?: iBook['description'];
   title: string;
   onClose(): void;
-  onSave(book: BookType): void;
-}
+  onSave(book: Omit<iBook, 'id'>): void;
+};
 
 const EditBookModal: React.FC<Props> = ({ id, title, onClose, onSave, ...rest}) => {
   const [name, setName] = useState(rest.name || '');
@@ -31,25 +32,24 @@ const EditBookModal: React.FC<Props> = ({ id, title, onClose, onSave, ...rest}) 
     e.stopPropagation();
     e.preventDefault();
 
-    const data = { name, price, category, description } as BookType;
+    const data = { name, price, category, description } as iBook;
 
-    if(id) {
-      data.id = id
-    }
+    id && (data.id = id);
 
     onSave(data);
   }
 
   return (
-    <div className='overlay'>
-      <div className='modal'>
-        <h2>{title}</h2>
+    <Overlay>
+      <div className={styles.modal}>
+        <h2 className={styles.modalTitle}>{title}</h2>
 
         <form onSubmit={handleOnSave}>
           <Input 
             id='name'
             label='Name:'
             value={name}
+            required
             onChange={handleNameChange}
           />
 
@@ -58,6 +58,7 @@ const EditBookModal: React.FC<Props> = ({ id, title, onClose, onSave, ...rest}) 
             type='number'
             label='Price:'
             value={price}
+            required
             onChange={handlePriceChange}
             min='0'
             step='1'
@@ -78,23 +79,23 @@ const EditBookModal: React.FC<Props> = ({ id, title, onClose, onSave, ...rest}) 
             onChange={handleDescriptionChange}
           />
 
-          <div className='btn-wrappper'>
-            <button 
-              className='btn'
+          <div className={styles.btnWrapper}>
+            <Button 
+              className={styles.saveButton}
               type='submit'
             >
               Save
-            </button>
-            <button 
+            </Button>
+            <Button 
               onClick={onClose}
-              className='btn close-btn'
+              className={styles.closeButton}
             > 
               Close
-            </button>
+            </Button>
           </div>
         </form>
       </div>
-    </div>
+    </Overlay>
   );
 }
 

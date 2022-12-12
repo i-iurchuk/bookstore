@@ -1,0 +1,19 @@
+.inputWrapper {
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+}
+
+.input {
+  margin: 10px 15px;
+  padding: 10px 20px;
+  border: none;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+  outline: none;
+}
+
+.input:active,
+.input:focus {
+  border: 1px solid #a6c4fc;
+}

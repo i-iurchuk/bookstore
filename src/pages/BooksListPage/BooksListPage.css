@@ -1,8 +1,0 @@
-.books-list {
-  width: 800px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: auto;
-  padding-top: 40px;
-}

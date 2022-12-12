@@ -1,18 +1,19 @@
 import React, { ChangeEvent } from 'react';
 
-import './Input.css';
+import styles from '../../styles/Input.module.css';
 
 interface Props {
   id: string;
   isTextArea?: boolean;
   label: string;
-  type?: string;
+  min?: HTMLInputElement['min'];
+  step?: HTMLInputElement['step'];
+  type?: HTMLInputElement['type'];
   tag?: 'input' | 'textarea';
-  min?: string;
-  step?: string;
+  required?: HTMLInputElement['required'];
   value?: HTMLInputElement['value'];
   onChange(value: HTMLInputElement['value'] | HTMLTextAreaElement['value']): void;
-}
+};
 
 
 const Input: React.FC<Props> = ({
@@ -24,13 +25,13 @@ const Input: React.FC<Props> = ({
     onChange?.(e.target.value);
 
   return (
-    <div className='input-wrapper'>
+    <div className={styles.inputWrapper}>
       <label htmlFor={id}>{label}</label>
+
       <Component 
-        className='input'
+        className={styles.input}
         id={id}
-        type={type} 
-        required 
+        type={type}  
         value={value} 
         onChange={handleOnChange} 
         {...rest}

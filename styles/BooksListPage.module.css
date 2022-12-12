@@ -1,0 +1,73 @@
+.booksList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  padding-top: 40px;
+}
+
+.addBookBtn {
+  margin: 25px;
+  color: white;
+  background-color: #9c27b0;
+}
+
+.addBookBtn:hover {
+  background-color: #7b1fa2;
+}
+
+@media only screen and (min-width : 480px) {
+  .booksList {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .booksList {
+    width: 600px;
+  }
+}
+
+@media only screen and (min-width : 992px) {
+  .booksList {
+    width: 800px;
+  }
+}
+
+@media only screen and (min-width : 1200px) {
+  .booksList {
+    width: 1100px;
+  }
+}
+
+.spinerWrapper {
+  display: flex;
+  height: 100%;
+}
+
+.spinerRotation {
+  font-weight: bold;
+  color:#7b1fa2;
+  margin: auto;
+  animation: 1.8s linear 0s normal none infinite running spinerRotation;
+  -webkit-animation: 1.8s linear 0s normal none infinite running spinerRotation;
+}
+
+@keyframes spinerRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinerRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
